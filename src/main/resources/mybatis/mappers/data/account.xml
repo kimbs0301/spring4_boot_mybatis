@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="account">
+	<resultMap type="Account" id="AccountResult">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="value" column="value" />
+		<result property="crtDate" column="crt_date" />
+	</resultMap>
+
+	<insert id="insert" parameterType="Account">
+	insert into account(id
+		, name
+		, value
+		, crt_date)
+	values(#{id}
+		, #{name}
+		, #{value}
+		, current_timestamp)
+	</insert>
+	
+	<insert id="insertList" parameterType="java.util.List">
+	insert into account(id
+		, name
+		, value
+		, crt_date)
+	values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.id}, #{item.name}, #{item.value}, current_timestamp)
+		</foreach>
+	</insert>
+	
+	<update id="update" parameterType="Account">
+	update account set
+		name = #{name}
+		, value = #{value}
+	where
+		id = #{id}
+	</update>
+	
+	<update id="updateList" parameterType="java.util.HashMap">
+	update account set
+		name = case
+		<foreach collection="list" item="item" separator="">
+			when id = #{item.id} then #{item.name}
+		</foreach>
+		end,
+		value = case
+		<foreach collection="list" item="item" separator="">
+			when id = #{item.id} then #{item.value}
+		</foreach>
+		end
+		where
+			id in
+			<foreach item="item" collection="list" open="(" close=")" separator=",">
+			#{item.id}
+		</foreach>
+		and value = #{value}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+	delete from account
+	where
+		id = #{id}
+	</delete>
+	
+	<select id="get" parameterType="int" resultMap="AccountResult">
+	select * from account
+	where
+		id = #{id}
+	</select>
+	
+	<select id="list" resultMap="AccountResult">
+	select * from account
+	</select>
+	
+	<select id="listIn" parameterType="java.util.List" resultMap="AccountResult">
+	select * from account
+	where
+		id in
+		<foreach item="id" collection="list" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</select>
+
+</mapper>
