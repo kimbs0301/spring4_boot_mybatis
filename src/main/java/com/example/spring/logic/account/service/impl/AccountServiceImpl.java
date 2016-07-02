@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.spring.logic.account.dao.AccountDao;
 import com.example.spring.logic.account.model.Account;
@@ -33,6 +34,13 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
+	@Transactional
+	public void deleteAll() {
+		accountDao.delete();
+	}
+
+	@Override
+	@Transactional
 	public void test1() {
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
@@ -96,6 +104,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
+	@Transactional
 	public void test2() {
 		List<Account> insertTestList = new ArrayList<>();
 		for (int i = 1; i < 2000; ++i) {
@@ -130,6 +139,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
+	@Transactional
 	public void test3() {
 		List<Account> insertTestList = new ArrayList<>();
 		for (int i = 1; i < 1000; ++i) {

@@ -58,6 +58,10 @@
 		and value = #{value}
 	</update>
 	
+	<delete id="deleteAll">
+	delete from account
+	</delete>
+	
 	<delete id="delete" parameterType="int">
 	delete from account
 	where

@@ -4,7 +4,4 @@
 	<typeAliases>
 		<typeAlias type="com.example.spring.logic.account.model.Account" alias="Account" />
 	</typeAliases>
-	<mappers>
-		<mapper resource="mybatis/mappers/data/account.xml" />
-	</mappers>
 </configuration>

@@ -5,6 +5,8 @@ package com.example.spring.logic.account.service;
  * 
  */
 public interface AccountService {
+	public void deleteAll();
+	
 	public void test1();
 	
 	public void test2();

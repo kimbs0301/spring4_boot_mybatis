@@ -12,10 +12,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -59,19 +61,21 @@ public class JdbcConfig {
 	}
 
 	@Bean
-	public SqlSessionFactory sqlSessionFactory() throws Exception {
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ApplicationContext applicationContext) throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-		sqlSessionFactory.setDataSource(dataSource());
+		sqlSessionFactory.setDataSource(dataSource);
 		// sqlSessionFactory.setConfiguration(configuration());
 		sqlSessionFactory.setDatabaseIdProvider(databaseIdProvider());
 		ClassPathResource configLocation = new ClassPathResource("mybatis/config-data.xml");
 		sqlSessionFactory.setConfigLocation(configLocation);
+		Resource[] mapperLocations = applicationContext.getResources("classpath:mybatis/mappers/**/*.xml");
+		sqlSessionFactory.setMapperLocations(mapperLocations);
 		return sqlSessionFactory.getObject();
 	}
 
 	@Bean
-	public SqlSessionTemplate sqlSessionTemplate() throws Exception {
-		SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory());
+	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
+		SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
 		return sqlSessionTemplate;
 	}
 

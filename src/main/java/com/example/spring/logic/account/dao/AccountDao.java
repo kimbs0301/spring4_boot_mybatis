@@ -18,6 +18,8 @@ public interface AccountDao {
 	
 	public void updateList(Map<String, Object> params);
 
+	public void delete();
+	
 	public void delete(int id);
 
 	public Account get(int id);

@@ -50,6 +50,11 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
+	public void delete() {
+		session.delete("account.deleteAll");
+	}
+
+	@Override
 	public void delete(int id) {
 		session.delete("account.delete", id);
 	}
