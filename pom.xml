@@ -93,50 +93,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>  
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
-			<version>1.12.1.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-cql</artifactId>
-			<version>1.4.2.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-cassandra</artifactId>
-			<version>1.4.2.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>io.netty</groupId>
-			<artifactId>netty-all</artifactId>
-			<version>4.0.37.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>com.datastax.cassandra</groupId>
-			<artifactId>cassandra-driver-core</artifactId>
-			<version>2.1.10.2</version>
-			<exclusions>
-				<exclusion>
-					<groupId>io.netty</groupId>
-					<artifactId>netty-handler</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.github.jnr</groupId>
-					<artifactId>jnr-ffi</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.github.jnr</groupId>
-					<artifactId>jnr-posix</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.datastax.cassandra</groupId>
-			<artifactId>cassandra-driver-dse</artifactId>
-			<version>2.1.9</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure</artifactId>
 			<version>${org.springboot-version}</version>

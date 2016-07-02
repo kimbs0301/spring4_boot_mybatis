@@ -52,7 +52,7 @@
 		end
 		where
 			id in
-			<foreach item="item" collection="list" open="(" close=")" separator=",">
+			<foreach collection="list" item="item" open="(" close=")" separator=",">
 			#{item.id}
 		</foreach>
 		and value = #{value}
@@ -78,7 +78,7 @@
 	select * from account
 	where
 		id in
-		<foreach item="id" collection="list" open="(" close=")" separator=",">
+		<foreach collection="list" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
 	</select>

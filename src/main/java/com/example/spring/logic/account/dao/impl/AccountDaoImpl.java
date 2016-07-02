@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.example.spring.logic.account.dao.AccountDao;
@@ -16,47 +19,53 @@ import com.example.spring.logic.account.model.Account;
  */
 @Repository
 public class AccountDaoImpl implements AccountDao {
+	private static final Logger LOGGER = LoggerFactory.getLogger(AccountDaoImpl.class);
+
+	public AccountDaoImpl() {
+		LOGGER.debug("생성자 AccountDaoImpl()");
+	}
 
 	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
+	@Qualifier("sqlSessionTemplate")
+	private SqlSessionTemplate session;
 
 	@Override
 	public void insert(Account account) {
-		sqlSessionTemplate.insert("account.insert", account);
+		session.insert("account.insert", account);
 	}
 
 	@Override
 	public void insertList(List<Account> accountList) {
-		sqlSessionTemplate.insert("account.insertList", accountList);
+		session.insert("account.insertList", accountList);
 	}
 
 	@Override
 	public void update(Account account) {
-		sqlSessionTemplate.update("account.update", account);
+		session.update("account.update", account);
 	}
 
 	@Override
 	public void updateList(Map<String, Object> params) {
-		sqlSessionTemplate.update("account.updateList", params);
+		session.update("account.updateList", params);
 	}
 
 	@Override
 	public void delete(int id) {
-		sqlSessionTemplate.delete("account.delete", id);
+		session.delete("account.delete", id);
 	}
 
 	@Override
 	public Account get(int id) {
-		return sqlSessionTemplate.selectOne("account.get", id);
+		return session.selectOne("account.get", id);
 	}
 
 	@Override
 	public List<Account> list() {
-		return sqlSessionTemplate.selectList("account.list");
+		return session.selectList("account.list");
 	}
 
 	@Override
 	public List<Account> listIn(List<Integer> idList) {
-		return sqlSessionTemplate.selectList("account.list", idList);
+		return session.selectList("account.listIn", idList);
 	}
 }

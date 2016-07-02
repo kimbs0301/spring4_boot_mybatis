@@ -5,5 +5,9 @@ package com.example.spring.logic.account.service;
  * 
  */
 public interface AccountService {
-	public void test();
+	public void test1();
+	
+	public void test2();
+	
+	public void test3();
 }

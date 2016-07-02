@@ -14,7 +14,7 @@ use mybatis_data;
 
 CREATE TABLE mybatis_data.`account` (
   `id` int(11) NOT NULL,
-  `name` varchar(10) NOT NULL,
+  `name` varchar(64) NOT NULL,
   `value` int(11) NOT NULL,
   `crt_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
