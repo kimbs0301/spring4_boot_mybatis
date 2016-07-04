@@ -26,7 +26,10 @@
 		, crt_date)
 	values
 		<foreach collection="list" item="item" separator=",">
-			(#{item.id}, #{item.name}, #{item.value}, current_timestamp)
+			(#{item.id}
+			, #{item.name}
+			, #{item.value}
+			, current_timestamp)
 		</foreach>
 	</insert>
 	
