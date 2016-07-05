@@ -32,3 +32,22 @@ curl -H "Content-Type:application/json; charset=utf-8" -H "Accept: application/j
 
 
 http://www.mybatis.org/spring/getting-started.html
+
+
+
+
+mysql wait_timeout
+
+http://blog.saltfactory.net/spring/solving-lost-hibernate-connection-mysql-in-springframework.html
+http://stackoverflow.com/questions/4440336/mysql-wait-timeout
+http://judgementdays.tistory.com/entry/DBCP-Datasource-%EC%84%A4%EC%A0%95-%EB%B0%8F-%EC%A0%81%EC%9A%A9-%EC%84%A4%EB%AA%85
+
+SET @@GLOBAL.wait_timeout=10;
+
+SET @@GLOBAL.wait_timeout=10;
+
+SET session wait_timeout=300;
+
+show global variables like 'wait%';
+
+show session variables like 'wait%';
